@@ -8,6 +8,7 @@ const tabs = [
   { href: "/", label: "Kitchen", icon: HomeIcon },
   { href: "/menu", label: "Menu", icon: MenuIcon },
   { href: "/cart", label: "Cart", icon: CartIcon },
+  { href: "/bbc-club", label: "BBC", icon: BBCIcon },
   { href: "/about", label: "Story", icon: StoryIcon },
 ];
 
@@ -71,6 +72,14 @@ function CartIcon({ active }: IconProps) {
       <path d="M4 5h2l1.5 10.5A2 2 0 0 0 9.5 17h7a2 2 0 0 0 2-1.6L20 8H6.5" stroke={stroke(active)} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="10" cy="20" r="1.2" fill={stroke(active)} />
       <circle cx="16" cy="20" r="1.2" fill={stroke(active)} />
+    </svg>
+  );
+}
+function BBCIcon({ active }: IconProps) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M20 7h-4V5a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1z" stroke={stroke(active)} strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M8 11h8M8 15h5" stroke={stroke(active)} strokeWidth="1.6" strokeLinecap="round" />
     </svg>
   );
 }
