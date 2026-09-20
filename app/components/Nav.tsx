@@ -68,7 +68,7 @@ export function Nav() {
         <div className="flex items-center border-b border-gold/10 px-6 py-5">
           <div className="relative h-11 w-auto overflow-hidden rounded-lg bg-white px-3 py-2 shadow-xl ring-2 ring-gold/20">
             <Image
-              src="/logo.avif"
+              src="/badoota-logo.svg"
               alt="Badoota"
               width={140}
               height={48}
