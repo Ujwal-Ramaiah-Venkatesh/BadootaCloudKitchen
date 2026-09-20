@@ -33,17 +33,6 @@ export function Nav() {
       <nav className="flex w-full items-center justify-between px-6 py-4 lg:px-10">
         {/* Left: Premium brand logo + search */}
         <div className="flex items-center gap-5">
-          {/* Hamburger Menu Button */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="flex flex-col items-center justify-center gap-1.5 p-2 md:hidden"
-            aria-label="Toggle menu"
-          >
-            <span className={`h-0.5 w-6 bg-gold transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`h-0.5 w-6 bg-gold transition-all ${menuOpen ? 'opacity-0' : ''}`} />
-            <span className={`h-0.5 w-6 bg-gold transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-          </button>
-
           <Link href="/" className="flex items-center gap-4 group">
             {/* Premium rectangular logo */}
             <div className="relative h-11 w-auto overflow-hidden rounded-lg bg-white px-3 py-2 shadow-xl ring-2 ring-gold/20 transition group-hover:ring-gold/50 group-hover:shadow-2xl md:h-12">
@@ -58,7 +47,7 @@ export function Nav() {
             </div>
           </Link>
 
-          {/* Search — jumps to the menu, filtered by what they typed */}
+          {/* Desktop Search — jumps to the menu, filtered by what they typed */}
           <form
             onSubmit={onSearch}
             className="hidden items-center gap-2 rounded-full border border-gold/30 bg-noir/50 px-4 py-2.5 backdrop-blur transition focus-within:border-gold md:flex"
@@ -80,26 +69,39 @@ export function Nav() {
           </form>
         </div>
 
-        {/* Mobile: compact search in the right corner (links/cart live in the bottom bar) */}
-        <form
-          onSubmit={onSearch}
-          className="flex items-center gap-2 rounded-full border border-gold/30 bg-noir/50 px-3.5 py-2 backdrop-blur transition focus-within:border-gold md:hidden"
-        >
-          <button type="submit" aria-label="Search dishes" className="shrink-0 text-gold/70 transition hover:text-gold">
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.7" />
-              <path d="m20 20-3.2-3.2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-            </svg>
+        {/* Mobile: compact search + hamburger menu on the right */}
+        <div className="flex items-center gap-3 md:hidden">
+          <form
+            onSubmit={onSearch}
+            className="flex items-center gap-2 rounded-full border border-gold/30 bg-noir/50 px-3.5 py-2 backdrop-blur transition focus-within:border-gold"
+          >
+            <button type="submit" aria-label="Search dishes" className="shrink-0 text-gold/70 transition hover:text-gold">
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.7" />
+                <path d="m20 20-3.2-3.2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+              </svg>
+            </button>
+            <input
+              type="search"
+              value={term}
+              onChange={(e) => setTerm(e.target.value)}
+              placeholder="Search…"
+              aria-label="Search food"
+              className="w-16 bg-transparent text-sm text-bone placeholder:text-bone-dim/60 focus:outline-none sm:w-24"
+            />
+          </form>
+
+          {/* Hamburger Menu Button - Right of search */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="flex flex-col items-center justify-center gap-1.5 p-2"
+            aria-label="Toggle menu"
+          >
+            <span className={`h-0.5 w-6 bg-gold transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`h-0.5 w-6 bg-gold transition-all ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`h-0.5 w-6 bg-gold transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
           </button>
-          <input
-            type="search"
-            value={term}
-            onChange={(e) => setTerm(e.target.value)}
-            placeholder="Search…"
-            aria-label="Search food"
-            className="w-20 bg-transparent text-sm text-bone placeholder:text-bone-dim/60 focus:outline-none sm:w-28"
-          />
-        </form>
+        </div>
 
         {/* Right: links + cart (mobile uses the bottom tab bar) */}
         <div className="hidden items-center gap-5 md:flex lg:gap-10">
@@ -128,14 +130,14 @@ export function Nav() {
       {/* Mobile Menu Overlay */}
       {menuOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop - Very high z-index to appear above everything */}
           <div
-            className="fixed inset-0 z-30 bg-noir/80 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-[100] bg-noir/90 backdrop-blur-sm md:hidden"
             onClick={() => setMenuOpen(false)}
           />
 
-          {/* Menu Panel */}
-          <div className="fixed left-0 top-0 z-40 h-full w-80 bg-coal border-r border-gold/20 shadow-2xl md:hidden">
+          {/* Menu Panel - Even higher z-index to appear above backdrop */}
+          <div className="fixed left-0 top-0 z-[110] h-full w-80 bg-coal border-r border-gold/20 shadow-2xl md:hidden">
             {/* Close button */}
             <button
               onClick={() => setMenuOpen(false)}
