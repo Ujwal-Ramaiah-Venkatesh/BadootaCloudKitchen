@@ -13,6 +13,11 @@ const spiceLabel: Record<MenuItem["spiceLevel"], string> = {
 
 export function MenuCard({ item }: { item: MenuItem }) {
   const add = useCart((s) => s.add);
+  const remove = useCart((s) => s.remove);
+  const lines = useCart((s) => s.lines);
+
+  const cartItem = lines[item.id];
+  const quantity = cartItem?.qty || 0;
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-card border border-gold/15 bg-coal shadow-soft transition hover:-translate-y-1 hover:border-gold/40 hover:shadow-gold">
@@ -68,12 +73,35 @@ export function MenuCard({ item }: { item: MenuItem }) {
               </p>
             )}
           </div>
-          <button
-            onClick={() => add(item)}
-            className="shrink-0 rounded-full border border-gold/40 bg-gold-sheen px-5 py-2.5 text-sm font-semibold text-noir transition hover:brightness-110 active:scale-95"
-          >
-            Add
-          </button>
+
+          {quantity === 0 ? (
+            <button
+              onClick={() => add(item)}
+              className="shrink-0 rounded-full border border-gold/40 bg-gold-sheen px-5 py-2.5 text-sm font-semibold text-noir transition hover:brightness-110 active:scale-95"
+            >
+              Add
+            </button>
+          ) : (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => remove(item.id)}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/40 bg-noir text-gold transition hover:border-gold hover:bg-gold/10 active:scale-95"
+                aria-label={`Remove one ${item.name}`}
+              >
+                <span className="text-lg leading-none">−</span>
+              </button>
+              <span className="min-w-[2rem] text-center font-display text-lg font-semibold text-gold-sheen">
+                {quantity}
+              </span>
+              <button
+                onClick={() => add(item)}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/40 bg-gold-sheen text-noir transition hover:brightness-110 active:scale-95"
+                aria-label={`Add one more ${item.name}`}
+              >
+                <span className="text-lg leading-none">+</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </article>
