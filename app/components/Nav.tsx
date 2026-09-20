@@ -11,6 +11,7 @@ export function Nav() {
   const pathname = usePathname();
   const router = useRouter();
   const [term, setTerm] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
   // On the home hero, the nav floats over the biryani video so the two read as
   // one continuous frame. Everywhere else it's a normal sticky bar.
   const overHero = pathname === "/";
@@ -32,6 +33,17 @@ export function Nav() {
       <nav className="flex w-full items-center justify-between px-6 py-4 lg:px-10">
         {/* Left: Premium brand logo + search */}
         <div className="flex items-center gap-5">
+          {/* Hamburger Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="flex flex-col items-center justify-center gap-1.5 p-2 md:hidden"
+            aria-label="Toggle menu"
+          >
+            <span className={`h-0.5 w-6 bg-gold transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`h-0.5 w-6 bg-gold transition-all ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`h-0.5 w-6 bg-gold transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </button>
+
           <Link href="/" className="flex items-center gap-4 group">
             {/* Premium rectangular logo */}
             <div className="relative h-11 w-auto overflow-hidden rounded-lg bg-white px-3 py-2 shadow-xl ring-2 ring-gold/20 transition group-hover:ring-gold/50 group-hover:shadow-2xl md:h-12">
@@ -112,6 +124,84 @@ export function Nav() {
           </Link>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {menuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 z-30 bg-noir/80 backdrop-blur-sm md:hidden"
+            onClick={() => setMenuOpen(false)}
+          />
+
+          {/* Menu Panel */}
+          <div className="fixed left-0 top-0 z-40 h-full w-80 bg-coal border-r border-gold/20 shadow-2xl md:hidden">
+            {/* Close button */}
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="absolute right-4 top-4 p-2 text-gold hover:text-gold-sheen"
+              aria-label="Close menu"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Menu Items */}
+            <nav className="flex flex-col gap-2 px-6 pt-20">
+              <Link
+                href="/menu"
+                onClick={() => setMenuOpen(false)}
+                className="py-3 text-lg text-bone transition hover:text-gold"
+              >
+                Menu
+              </Link>
+              <Link
+                href="/order"
+                onClick={() => setMenuOpen(false)}
+                className="py-3 text-lg text-bone transition hover:text-gold"
+              >
+                Order Online
+              </Link>
+              <Link
+                href="/bbc-club"
+                onClick={() => setMenuOpen(false)}
+                className="py-3 text-lg text-bone transition hover:text-gold"
+              >
+                BBC Club
+              </Link>
+              <Link
+                href="/about"
+                onClick={() => setMenuOpen(false)}
+                className="py-3 text-lg text-bone transition hover:text-gold"
+              >
+                About
+              </Link>
+              <Link
+                href="/delivery"
+                onClick={() => setMenuOpen(false)}
+                className="py-3 text-lg text-bone transition hover:text-gold"
+              >
+                Delivery
+              </Link>
+              <Link
+                href="/licensing"
+                onClick={() => setMenuOpen(false)}
+                className="py-3 text-lg text-bone transition hover:text-gold"
+              >
+                Licensing Opportunity
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                className="py-3 text-lg text-bone transition hover:text-gold"
+              >
+                Contact
+              </Link>
+            </nav>
+          </div>
+        </>
+      )}
     </header>
   );
 }
