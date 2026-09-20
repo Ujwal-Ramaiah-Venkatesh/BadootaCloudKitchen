@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,6 +13,12 @@ export function Nav() {
   const router = useRouter();
   const [term, setTerm] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Mount check for portal
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -34,14 +41,94 @@ export function Nav() {
     router.push(q ? `/menu?q=${encodeURIComponent(q)}` : "/menu");
   }
 
+  // Menu overlay component to be rendered via portal
+  const menuOverlay = menuOpen && mounted ? (
+    <>
+      {/* Backdrop - Rendered at body level via portal */}
+      <div
+        className="fixed inset-0 z-[999] bg-noir backdrop-blur-md md:hidden"
+        onClick={() => setMenuOpen(false)}
+        style={{ isolation: "isolate" }}
+      />
+
+      {/* Menu Panel - Rendered at body level via portal */}
+      <div className="fixed left-0 top-0 z-[1000] h-full w-80 bg-noir border-r border-gold/20 shadow-2xl md:hidden">
+        {/* Close button */}
+        <button
+          onClick={() => setMenuOpen(false)}
+          className="absolute right-4 top-4 p-2 text-gold hover:text-gold-sheen"
+          aria-label="Close menu"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Menu Items */}
+        <nav className="flex flex-col gap-2 px-6 pt-20">
+          <Link
+            href="/menu"
+            onClick={() => setMenuOpen(false)}
+            className="py-3 text-lg text-bone transition hover:text-gold"
+          >
+            Menu
+          </Link>
+          <Link
+            href="/order"
+            onClick={() => setMenuOpen(false)}
+            className="py-3 text-lg text-bone transition hover:text-gold"
+          >
+            Order Online
+          </Link>
+          <Link
+            href="/bbc-club"
+            onClick={() => setMenuOpen(false)}
+            className="py-3 text-lg text-bone transition hover:text-gold"
+          >
+            BBC Club
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => setMenuOpen(false)}
+            className="py-3 text-lg text-bone transition hover:text-gold"
+          >
+            About
+          </Link>
+          <Link
+            href="/delivery"
+            onClick={() => setMenuOpen(false)}
+            className="py-3 text-lg text-bone transition hover:text-gold"
+          >
+            Delivery
+          </Link>
+          <Link
+            href="/licensing"
+            onClick={() => setMenuOpen(false)}
+            className="py-3 text-lg text-bone transition hover:text-gold"
+          >
+            Licensing Opportunity
+          </Link>
+          <Link
+            href="/contact"
+            onClick={() => setMenuOpen(false)}
+            className="py-3 text-lg text-bone transition hover:text-gold"
+          >
+            Contact
+          </Link>
+        </nav>
+      </div>
+    </>
+  ) : null;
+
   return (
-    <header
-      className={
-        overHero
-          ? "absolute inset-x-0 top-0 z-40 bg-gradient-to-b from-noir via-noir/40 to-transparent md:from-noir/70 md:via-noir/25"
-          : "sticky top-0 z-40 border-b border-gold/10 bg-noir/85 backdrop-blur"
-      }
-    >
+    <>
+      <header
+        className={
+          overHero
+            ? "absolute inset-x-0 top-0 z-40 bg-gradient-to-b from-noir via-noir/40 to-transparent md:from-noir/70 md:via-noir/25"
+            : "sticky top-0 z-40 border-b border-gold/10 bg-noir/85 backdrop-blur"
+        }
+      >
       <nav className="flex w-full items-center justify-between px-6 py-4 lg:px-10">
         {/* Left: Premium brand logo + search */}
         <div className="flex items-center gap-5">
@@ -138,84 +225,10 @@ export function Nav() {
           </Link>
         </div>
       </nav>
+      </header>
 
-      {/* Mobile Menu Overlay */}
-      {menuOpen && (
-        <>
-          {/* Backdrop - Very high z-index to appear above everything */}
-          <div
-            className="fixed inset-0 z-[100] bg-noir/95 backdrop-blur-md md:hidden"
-            onClick={() => setMenuOpen(false)}
-          />
-
-          {/* Menu Panel - Even higher z-index to appear above backdrop */}
-          <div className="fixed left-0 top-0 z-[110] h-full w-80 bg-noir border-r border-gold/20 shadow-2xl md:hidden">
-            {/* Close button */}
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="absolute right-4 top-4 p-2 text-gold hover:text-gold-sheen"
-              aria-label="Close menu"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* Menu Items */}
-            <nav className="flex flex-col gap-2 px-6 pt-20">
-              <Link
-                href="/menu"
-                onClick={() => setMenuOpen(false)}
-                className="py-3 text-lg text-bone transition hover:text-gold"
-              >
-                Menu
-              </Link>
-              <Link
-                href="/order"
-                onClick={() => setMenuOpen(false)}
-                className="py-3 text-lg text-bone transition hover:text-gold"
-              >
-                Order Online
-              </Link>
-              <Link
-                href="/bbc-club"
-                onClick={() => setMenuOpen(false)}
-                className="py-3 text-lg text-bone transition hover:text-gold"
-              >
-                BBC Club
-              </Link>
-              <Link
-                href="/about"
-                onClick={() => setMenuOpen(false)}
-                className="py-3 text-lg text-bone transition hover:text-gold"
-              >
-                About
-              </Link>
-              <Link
-                href="/delivery"
-                onClick={() => setMenuOpen(false)}
-                className="py-3 text-lg text-bone transition hover:text-gold"
-              >
-                Delivery
-              </Link>
-              <Link
-                href="/licensing"
-                onClick={() => setMenuOpen(false)}
-                className="py-3 text-lg text-bone transition hover:text-gold"
-              >
-                Licensing Opportunity
-              </Link>
-              <Link
-                href="/contact"
-                onClick={() => setMenuOpen(false)}
-                className="py-3 text-lg text-bone transition hover:text-gold"
-              >
-                Contact
-              </Link>
-            </nav>
-          </div>
-        </>
-      )}
-    </header>
+      {/* Mobile Menu Overlay - Rendered via Portal at document body level */}
+      {mounted && typeof window !== 'undefined' && menuOverlay && createPortal(menuOverlay, document.body)}
+    </>
   );
 }
