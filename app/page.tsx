@@ -49,36 +49,51 @@ export default function Home() {
           </p>
 
           {/* Craving discovery — Karnataka cuisine categories */}
-          <div className="animate-rise mt-10">
+          <div className="animate-rise mt-10 w-full">
             <p className="mb-4 text-sm font-medium text-bone">
               What are you craving today?
             </p>
-            <div className="relative">
-              {/* Scroll hint gradient on left */}
-              <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-noir to-transparent md:hidden" />
-              {/* Scroll hint gradient on right */}
-              <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-noir to-transparent md:hidden" />
 
-              <div
-                className="-mx-6 flex gap-3 overflow-x-scroll px-6 pb-3 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0"
-                style={{
-                  WebkitOverflowScrolling: 'touch',
-                  scrollbarWidth: 'thin',
-                  scrollbarColor: '#C9A24B rgba(11, 10, 9, 0.5)',
-                  scrollPaddingLeft: '24px',
-                  scrollPaddingRight: '24px'
-                }}
-              >
-                {CRAVINGS.map((c) => (
-                  <Link
-                    key={c.tag}
-                    href={`/menu?c=${c.tag}`}
-                    className="shrink-0 whitespace-nowrap rounded-full border border-gold/40 bg-noir/50 px-5 py-2.5 text-sm font-medium text-bone backdrop-blur transition hover:border-gold hover:bg-coal hover:text-gold active:scale-95 active:border-gold"
-                  >
-                    {c.label}
-                  </Link>
-                ))}
+            {/* Mobile: Horizontal scroll */}
+            <div className="block sm:hidden">
+              <div className="relative -mx-6">
+                {/* Left fade hint */}
+                <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-8 bg-gradient-to-r from-noir to-transparent" />
+                {/* Right fade hint */}
+                <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-8 bg-gradient-to-l from-noir to-transparent" />
+
+                <div
+                  className="flex gap-3 overflow-x-auto px-6 pb-3"
+                  style={{
+                    WebkitOverflowScrolling: 'touch',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#C9A24B #0B0A09'
+                  }}
+                >
+                  {CRAVINGS.map((c) => (
+                    <Link
+                      key={c.tag}
+                      href={`/menu?c=${c.tag}`}
+                      className="inline-block shrink-0 whitespace-nowrap rounded-full border border-gold/40 bg-noir/50 px-5 py-2.5 text-sm font-medium text-bone backdrop-blur transition active:scale-95"
+                    >
+                      {c.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
+            </div>
+
+            {/* Desktop: Wrapped buttons */}
+            <div className="hidden sm:flex sm:flex-wrap sm:justify-center sm:gap-3">
+              {CRAVINGS.map((c) => (
+                <Link
+                  key={c.tag}
+                  href={`/menu?c=${c.tag}`}
+                  className="rounded-full border border-gold/40 bg-noir/50 px-5 py-2.5 text-sm font-medium text-bone backdrop-blur transition hover:border-gold hover:bg-coal hover:text-gold"
+                >
+                  {c.label}
+                </Link>
+              ))}
             </div>
           </div>
 
