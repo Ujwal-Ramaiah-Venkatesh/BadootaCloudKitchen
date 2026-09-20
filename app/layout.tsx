@@ -23,6 +23,13 @@ export const metadata: Metadata = {
   description:
     "Experience authentic Bengaluru food in San Jose. Traditional Donne Biryani, bold spices, and Karnataka specialties made fresh to order. Order for pickup or delivery.",
   manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: "/logo.avif", type: "image/avif" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/logo.avif",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
