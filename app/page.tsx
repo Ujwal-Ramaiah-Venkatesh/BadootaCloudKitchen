@@ -53,16 +53,18 @@ export default function Home() {
             <p className="mb-4 text-sm font-medium text-bone">
               What are you craving today?
             </p>
-            <div className="no-scrollbar -mx-6 flex gap-3 overflow-x-auto px-6 pb-1 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0">
-              {CRAVINGS.map((c) => (
-                <Link
-                  key={c.tag}
-                  href={`/menu?c=${c.tag}`}
-                  className="shrink-0 rounded-full border border-gold/40 bg-noir/50 px-5 py-2.5 text-sm font-medium text-bone backdrop-blur transition hover:border-gold hover:bg-coal hover:text-gold"
-                >
-                  {c.label}
-                </Link>
-              ))}
+            <div className="relative">
+              <div className="-mx-6 flex gap-3 overflow-x-auto px-6 pb-1 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0" style={{scrollbarWidth: 'thin', scrollbarColor: '#C9A24B #0B0A09'}}>
+                {CRAVINGS.map((c) => (
+                  <Link
+                    key={c.tag}
+                    href={`/menu?c=${c.tag}`}
+                    className="shrink-0 rounded-full border border-gold/40 bg-noir/50 px-5 py-2.5 text-sm font-medium text-bone backdrop-blur transition hover:border-gold hover:bg-coal hover:text-gold active:scale-95"
+                  >
+                    {c.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 
