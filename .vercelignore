@@ -1,0 +1,71 @@
+# Dependencies (Vercel installs these automatically)
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build output (Vercel rebuilds)
+.next/
+out/
+build/
+dist/
+tsconfig.tsbuildinfo
+
+# Development files
+.env.local
+.env*.local
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Assets not needed for deployment
+assets/
+shots/
+shot.mjs
+shot-devices.mjs
+logo-concepts.html
+
+# Documentation (not needed at runtime)
+*.md
+!README.md
+GOUDRU_COUPLE_BUILD_PROMPT.md
+GOUDRU_COUPLE_SECURITY.md
+GOUDRU_COUPLE_TECHSTACK.md
+TEST_REPORT.md
+SEARCH_TEST_REPORT.md
+BUG_FIX_SEARCH_STATE.md
+COMPLETE_TEST_RESULTS.md
+FINAL_TEST_SUMMARY.md
+SEARCH_TESTING_CHECKLIST.md
+TESTING_SUMMARY.txt
+BUILD_COMPLETE_SUMMARY.md
+DEMO_COMPLETE.md
+IMAGE_REQUIREMENTS.md
+DEPLOY.md
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Temporary files
+test-search.js
+*.tmp
+*.temp

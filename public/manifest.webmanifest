@@ -1,0 +1,19 @@
+{
+  "name": "Badoota Cloud Kitchen — Authentic Karnataka Cuisine",
+  "short_name": "Badoota",
+  "description": "Authentic Bengaluru food in San Jose. Traditional Donne Biryani and Karnataka specialties.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B0A09",
+  "theme_color": "#0B0A09",
+  "categories": ["food", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+import Link from "next/link";
+
+const ADDRESS = "336 Commercial Street, San Jose, CA 95112";
+const PHONE = "+14085551234"; // Replace with actual
+const PHONE_DISPLAY = "(408) 555-1234";
+const EMAIL = "info@badoota.biz";
+const MAPS_URL = "https://maps.google.com/?q=326+Commercial+Street+San+Jose+CA+95112";
+
+export default function ContactPage() {
+  return (
+    <main className="min-h-screen">
+      {/* Hero */}
+      <section className="bg-gradient-to-br from-coal via-noir to-coal px-6 py-20 text-center lg:px-10">
+        <div className="mx-auto max-w-4xl">
+          <p className="font-display text-sm uppercase tracking-[0.3em] text-gold">
+            Get in Touch
+          </p>
+          <h1 className="mt-4 font-display text-4xl leading-tight text-bone md:text-5xl lg:text-6xl">
+            Visit or Contact Us
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-bone-dim">
+            Come visit us in San Jose or reach out with questions. We're here to
+            serve you authentic Karnataka cuisine.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Methods & Hours */}
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+        <div className="grid gap-8 lg:grid-cols-2">
+          <a
+            key={c.label}
+            href={c.href}
+            className="rounded-app border border-gold/15 bg-coal p-6 transition hover:border-gold"
+          >
+            <p className="text-sm uppercase tracking-wider text-gold/70">{c.label}</p>
+            <p className="mt-2 font-display text-2xl text-bone">{c.value}</p>
+          </a>
+        ))}
+        <div className="rounded-app border border-gold/15 bg-coal p-6">
+          <p className="text-sm uppercase tracking-wider text-gold/70">Kitchen hours</p>
+          <p className="mt-2 font-display text-2xl text-bone">Placeholder</p>
+          <p className="text-sm text-bone-dim">Add real hours &amp; delivery areas</p>
+        </div>
+      </div>
+    </main>
+  );
+}
