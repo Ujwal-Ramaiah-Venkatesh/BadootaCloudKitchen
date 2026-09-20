@@ -1,7 +1,0 @@
-<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Gold/Yellow accent (small leaf/flame shape) -->
-  <path d="M20 15 C 20 10, 25 8, 28 12 C 30 15, 28 20, 25 22 C 22 24, 18 22, 18 18 Z" fill="#FFB800"/>
-
-  <!-- BADOOTA text in red/magenta -->
-  <text x="35" y="38" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#E91E63" letter-spacing="1">BADOOTA</text>
-</svg>
