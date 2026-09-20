@@ -33,7 +33,7 @@ export function Nav() {
         {/* Left: Premium brand logo + search */}
         <div className="flex items-center gap-5">
           <Link href="/" className="flex items-center gap-4 group">
-            {/* Premium rectangular logo with rotation */}
+            {/* Premium rectangular logo */}
             <div className="relative h-11 w-auto overflow-hidden rounded-lg bg-white px-3 py-2 shadow-xl ring-2 ring-gold/20 transition group-hover:ring-gold/50 group-hover:shadow-2xl md:h-12">
               <Image
                 src="/logo.avif"
@@ -43,14 +43,6 @@ export function Nav() {
                 className="h-full w-auto object-contain"
                 priority
               />
-            </div>
-            <div className="hidden flex-col sm:flex">
-              <span className="font-display text-2xl font-bold leading-tight tracking-tight text-gold-sheen md:text-3xl">
-                Badoota
-              </span>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-bone-dim/90">
-                Bengaluru Food
-              </span>
             </div>
           </Link>
 

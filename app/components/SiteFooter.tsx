@@ -82,12 +82,6 @@ export function SiteFooter() {
                   className="h-full w-auto object-contain"
                 />
               </div>
-              <div>
-                <p className="font-display text-3xl font-bold text-gold-sheen">Badoota</p>
-                <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-bone-dim">
-                  Bengaluru Food
-                </p>
-              </div>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-bone-dim">
               Authentic Karnataka cuisine in San Jose. Traditional Donne Biryani
