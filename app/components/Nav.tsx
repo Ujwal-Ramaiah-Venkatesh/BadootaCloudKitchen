@@ -149,7 +149,7 @@ export function Nav() {
             {/* Premium rectangular logo */}
             <div className="relative h-11 w-auto overflow-hidden rounded-lg bg-white px-3 py-2 shadow-xl ring-2 ring-gold/20 transition group-hover:ring-gold/50 group-hover:shadow-2xl md:h-12">
               <Image
-                src="/logo.avif"
+                src="/badoota-logo.svg"
                 alt="Badoota"
                 width={140}
                 height={48}
