@@ -54,12 +54,26 @@ export default function Home() {
               What are you craving today?
             </p>
             <div className="relative">
-              <div className="-mx-6 flex gap-3 overflow-x-auto px-6 pb-1 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0" style={{scrollbarWidth: 'thin', scrollbarColor: '#C9A24B #0B0A09'}}>
+              {/* Scroll hint gradient on left */}
+              <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-noir to-transparent md:hidden" />
+              {/* Scroll hint gradient on right */}
+              <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-noir to-transparent md:hidden" />
+
+              <div
+                className="-mx-6 flex gap-3 overflow-x-scroll px-6 pb-3 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0"
+                style={{
+                  WebkitOverflowScrolling: 'touch',
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#C9A24B rgba(11, 10, 9, 0.5)',
+                  scrollPaddingLeft: '24px',
+                  scrollPaddingRight: '24px'
+                }}
+              >
                 {CRAVINGS.map((c) => (
                   <Link
                     key={c.tag}
                     href={`/menu?c=${c.tag}`}
-                    className="shrink-0 rounded-full border border-gold/40 bg-noir/50 px-5 py-2.5 text-sm font-medium text-bone backdrop-blur transition hover:border-gold hover:bg-coal hover:text-gold active:scale-95"
+                    className="shrink-0 whitespace-nowrap rounded-full border border-gold/40 bg-noir/50 px-5 py-2.5 text-sm font-medium text-bone backdrop-blur transition hover:border-gold hover:bg-coal hover:text-gold active:scale-95 active:border-gold"
                   >
                     {c.label}
                   </Link>

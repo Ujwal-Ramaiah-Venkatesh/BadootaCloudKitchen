@@ -60,6 +60,34 @@ a {
   display: none;
 }
 
+/* Better horizontal scrolling for mobile */
+.overflow-x-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+}
+
+/* Visible scrollbar for better UX */
+.overflow-x-scroll::-webkit-scrollbar {
+  height: 6px;
+  margin-top: 8px;
+}
+
+.overflow-x-scroll::-webkit-scrollbar-track {
+  background: rgba(11, 10, 9, 0.5);
+  border-radius: 3px;
+  margin: 0 24px;
+}
+
+.overflow-x-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #E7C877 0%, #C9A24B 50%, #8A6E2F 100%);
+  border-radius: 3px;
+}
+
+.overflow-x-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #E7C877 0%, #C9A24B 100%);
+}
+
 @keyframes rise {
   from {
     opacity: 0;
