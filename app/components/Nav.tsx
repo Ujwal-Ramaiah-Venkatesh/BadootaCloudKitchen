@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,6 +12,18 @@ export function Nav() {
   const router = useRouter();
   const [term, setTerm] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [menuOpen]);
   // On the home hero, the nav floats over the biryani video so the two read as
   // one continuous frame. Everywhere else it's a normal sticky bar.
   const overHero = pathname === "/";
@@ -132,12 +144,12 @@ export function Nav() {
         <>
           {/* Backdrop - Very high z-index to appear above everything */}
           <div
-            className="fixed inset-0 z-[100] bg-noir/90 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-[100] bg-noir/95 backdrop-blur-md md:hidden"
             onClick={() => setMenuOpen(false)}
           />
 
           {/* Menu Panel - Even higher z-index to appear above backdrop */}
-          <div className="fixed left-0 top-0 z-[110] h-full w-80 bg-coal border-r border-gold/20 shadow-2xl md:hidden">
+          <div className="fixed left-0 top-0 z-[110] h-full w-80 bg-noir border-r border-gold/20 shadow-2xl md:hidden">
             {/* Close button */}
             <button
               onClick={() => setMenuOpen(false)}
