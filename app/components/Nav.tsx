@@ -64,8 +64,21 @@ export function Nav() {
           </svg>
         </button>
 
+        {/* Logo at top of menu */}
+        <div className="flex items-center justify-center border-b border-gold/10 px-6 py-6">
+          <div className="relative h-14 w-auto overflow-hidden rounded-lg bg-white px-4 py-3 shadow-xl ring-2 ring-gold/30">
+            <Image
+              src="/logo.avif"
+              alt="Badoota"
+              width={140}
+              height={48}
+              className="h-full w-auto object-contain"
+            />
+          </div>
+        </div>
+
         {/* Menu Items */}
-        <nav className="flex flex-col gap-2 px-6 pt-20">
+        <nav className="flex flex-col gap-2 px-6 pt-6">
           <Link
             href="/menu"
             onClick={() => setMenuOpen(false)}
