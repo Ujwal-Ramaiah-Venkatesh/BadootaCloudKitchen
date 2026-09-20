@@ -78,8 +78,12 @@ function CartIcon({ active }: IconProps) {
 function BBCIcon({ active }: IconProps) {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <path d="M20 7h-4V5a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1z" stroke={stroke(active)} strokeWidth="1.6" strokeLinejoin="round" />
-      <path d="M8 11h8M8 15h5" stroke={stroke(active)} strokeWidth="1.6" strokeLinecap="round" />
+      {/* Community/People icon - three people for BBC Club membership */}
+      <circle cx="12" cy="7" r="2.5" stroke={stroke(active)} strokeWidth="1.6" />
+      <circle cx="6" cy="9" r="2" stroke={stroke(active)} strokeWidth="1.6" />
+      <circle cx="18" cy="9" r="2" stroke={stroke(active)} strokeWidth="1.6" />
+      <path d="M12 11c-2.5 0-4.5 1.5-4.5 4v4h9v-4c0-2.5-2-4-4.5-4z" stroke={stroke(active)} strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M3.5 19v-2.5c0-1.5 1-2.5 2.5-2.5M20.5 19v-2.5c0-1.5-1-2.5-2.5-2.5" stroke={stroke(active)} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
