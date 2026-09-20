@@ -64,14 +64,14 @@ export function Nav() {
           </svg>
         </button>
 
-        {/* Logo at top of menu - left aligned, smaller */}
+        {/* Logo at top of menu - left aligned, same size as nav logo */}
         <div className="flex items-center border-b border-gold/10 px-6 py-5">
-          <div className="relative h-10 w-auto overflow-hidden rounded-lg bg-white px-3 py-2 shadow-lg ring-2 ring-gold/20">
+          <div className="relative h-11 w-auto overflow-hidden rounded-lg bg-white px-3 py-2 shadow-xl ring-2 ring-gold/20">
             <Image
               src="/logo.avif"
               alt="Badoota"
-              width={100}
-              height={36}
+              width={140}
+              height={48}
               className="h-full w-auto object-contain"
             />
           </div>
